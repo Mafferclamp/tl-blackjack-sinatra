@@ -1,0 +1,17 @@
+<div class="col-md-5">
+<h2>Bet</h2>
+	<p><%= session[:player_name]%>'s current balance: </p>
+	<p>$<%= session[:buy_in] %></p>
+	<form class="form-inline" action="/bet" method="post">
+		<div class="form-group">
+	    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+	    <p>How much would you like to bet?</p>
+	    <div class="input-group">
+	      <div class="input-group-addon">$</div>
+	      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount" name="bet">
+	      <div class="input-group-addon">.00</div>
+	    </div>
+	    <button type="submit" class="btn btn-primary">Submit</button>
+	  </div>
+	</form>
+</div>

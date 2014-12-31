@@ -1,9 +1,21 @@
+
+<div class='col-md-4'>
 <h2>Welcome to my game</h2>
 <p>What is your name?</p>
+	<form action='/login' method='post'>
+		<div class="form-group">
+			<input type="text" class="form-control" name="player_name" placeholder="Name" >
+		</div>
 
-<form action='/login' method='post'>
-	<div class="form-group">
-		<input type="text" class="form-control" name="player_name" placeholder="Name" >
-	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
-</form>
+			<div class="form-group">
+		    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+		    <p>How much would you like to buy in for?</p>
+		    <div class="input-group">
+		      <div class="input-group-addon">$</div>
+		      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount" name="buy_in">
+		      <div class="input-group-addon">.00</div>
+		    </div>
+		  </div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>
