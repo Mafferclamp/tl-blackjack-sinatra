@@ -1,17 +1,36 @@
-<div class="col-md-6">
+<div >
 	<h3>Black Jack</h3>
-<!-- 	<p>You bet $<%= session[:bet]%></p>
-	<p>Dealer's cards are: </p>
-		<ul>
+	<p>You bet $<%= session[:bet]%></p>
+	<h4>Dealer's cards are: </h4>
+		<div class="well">
 			<% session[:dealer_cards].each do |card| %>
-			<li><%= card.to_s %></li>
+				<%= card_image(card) %>
 			<% end %>
-		</ul>
-	<p>Player's cards are:</p>  
-		<ul>
-			<% session[:player_cards].each do |card| %>
-			<li><%= card.to_s %></li>
-			<% end %>
-		</ul> -->
+			<h4>The dealer has a total of: <%= calculate_total(session[:dealer_cards]) %></h4>
+		</div>
 
-</div>
+		<%if @dealer_turn %>
+			<form action="/game/dealer/hit" method="post">
+				<button type="submit" class="btn btn-warning"> Dealer's next card </button>
+			</form>
+		<% end %>
+
+	<h4><%=session[:player_name]%>'s cards are:</h4> 
+		<div class="well"> 
+			<% session[:player_cards].each do |card| %>
+				<%= card_image(card) %>
+			<% end %>
+			<h4><%= session[:player_name] %> has a total of: <%= calculate_total(session[:player_cards]) %></h4>
+		</div>
+
+	<%if @show_hit_stay %>	
+	<div class="form-group">
+		<form action="/game/player/hit" method="post" class="form_float_left">
+			<button type="submit" class="btn btn-warning ">Hit </button>
+		</form>
+
+		<form  action="/game/player/stay" method="post" class="form_float_left">
+			<button type="sumbit" class="btn btn-success form_float_right">Stay</button>
+		</form>
+	</div>
+	<% end%>

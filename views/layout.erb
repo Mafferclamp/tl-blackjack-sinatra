@@ -8,6 +8,9 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
+    <!-- custom css -->    
+    <link rel="stylesheet" href="/application.css">
+
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </head>
@@ -24,7 +27,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Home</a>
+      <a class="navbar-brand btn " href="/login">New Game</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -32,7 +35,7 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><%= session[:player_name] %></a></li>
-        <li><a href="#">Current Balance: $<%= session[:buy_in] %>
+        <li><a href="#">Current Balance: $<%= session[:buy_in] %></a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -40,9 +43,17 @@
 </nav>
 
   <div class="container">
-    <%if @error %>
-      <div class="alert alert-error"><%=@error%></div>
-    <% end %>
+  <%if @success %>
+        <div class="alert alert-success" role="alert"><%=@success%></div>
+  <% end %>
+  <%if @error %>
+    <div class="alert alert-danger" role="alert"><%=@error%></div>
+  <% end %>
+  <%if @play_again %>
+    <form action="/bet" method="get">
+      <button class="btn btn-success">Play Again?</button>
+    </form>
+  <% end %>
       <%= yield %>
   </div>
   </body>
