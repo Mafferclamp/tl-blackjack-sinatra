@@ -4,15 +4,27 @@
     <title>My First App</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- jQuery librarry -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">-->
+   
     <!-- custom css -->    
     <link rel="stylesheet" href="/application.css">
 
+    <!-- custom JS -->    
+    <script src="/application.js"></script>
+
+    <!-- Bootstrap JS -->    
+    <script src="vendor/bootstrap/js/bootstrap.js"></script>
+
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
+
+
+
+
   </head>
   <body style="padding-top: 50px;">
 
@@ -43,18 +55,10 @@
 </nav>
 
   <div class="container">
-  <%if @success %>
-        <div class="alert alert-success" role="alert"><%=@success%></div>
-  <% end %>
-  <%if @error %>
-    <div class="alert alert-danger" role="alert"><%=@error%></div>
-  <% end %>
-  <%if @play_again %>
-    <form action="/bet" method="get">
-      <button class="btn btn-success">Play Again?</button>
-    </form>
-  <% end %>
+
+
+
       <%= yield %>
-  </div>
+  
   </body>
 </html>

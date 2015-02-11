@@ -1,36 +1,71 @@
-<div >
+<div class="wrap">
+  <div class="container">
+  <%if @winner %>
+        <div class="alert alert-success" role="alert"><%=@winner%></div>
+  <% end %>
+  <%if @loser %>
+    <div class="alert alert-danger" role="alert"><%=@loser%></div>
+  <% end %>
+   <%if @tie %>
+    <div class="alert alert-warning" role="alert"><%=@tie%></div>
+  <% end %>
+   <%if @success %>
+      <div class="alert alert-success" role="alert"><%=@success%></div>
+  <% end %>
+    <%if @error %>
+    <div class="alert alert-danger" role="alert"><%=@error%></div>
+  <% end %>
+
+  <div class="form-group">
+  <%if @play_again %>
+      <form action="/bet" method="get" class="form_float_left">
+        <button class="btn btn-success">Play Again?</button>
+      </form>
+      <form action="/gameover" method="get" class="form_float_left">
+        <button class="btn btn-default"> Exit </button>
+      </form>
+
+  <% end %>
+  </div>
+<br/>
 	<h3>Black Jack</h3>
 	<p>You bet $<%= session[:bet]%></p>
 	<h4>Dealer's cards are: </h4>
-		<div class="well">
-			<% session[:dealer_cards].each do |card| %>
+		<div class="well" id="dealer_area">
+			<% session[:dealer_cards].each_with_index do |card, i| %>
+				<% if session[:turn] != 'dealer' && i == 0 %>
+				<img src="/images/cards/cover.jpg">
+			<% else %>
 				<%= card_image(card) %>
+			<% end %>
 			<% end %>
 			<h4>The dealer has a total of: <%= calculate_total(session[:dealer_cards]) %></h4>
 		</div>
 
 		<%if @dealer_turn %>
-			<form action="/game/dealer/hit" method="post">
+			<form action="/game/dealer/hit" method="post" id="dealer_hit">
 				<button type="submit" class="btn btn-warning"> Dealer's next card </button>
 			</form>
 		<% end %>
 
 	<h4><%=session[:player_name]%>'s cards are:</h4> 
-		<div class="well"> 
+		<div class="well" id="player_area"> 
 			<% session[:player_cards].each do |card| %>
 				<%= card_image(card) %>
 			<% end %>
 			<h4><%= session[:player_name] %> has a total of: <%= calculate_total(session[:player_cards]) %></h4>
+	
 		</div>
-
+		<h4>Your current balance: $<%=session[:buy_in] %> and bet: $<%=session[:bet] %></h4>
 	<%if @show_hit_stay %>	
 	<div class="form-group">
-		<form action="/game/player/hit" method="post" class="form_float_left">
-			<button type="submit" class="btn btn-warning ">Hit </button>
+		<form action="/game/player/hit" method="post" class="form_float_left" id="hit_form">
+			<button type="submit" class="btn btn-warning">Hit </button>
 		</form>
 
-		<form  action="/game/player/stay" method="post" class="form_float_left">
+		<form  action="/game/player/stay" method="post" class="form_float_left" id="stay_form">
 			<button type="sumbit" class="btn btn-success form_float_right">Stay</button>
 		</form>
 	</div>
 	<% end%>
+</div>
