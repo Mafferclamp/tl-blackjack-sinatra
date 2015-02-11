@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'sinatra'
-require 'shotgun'
 
 use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
